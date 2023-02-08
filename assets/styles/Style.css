@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
 
 html, body {
   margin: 0px;
@@ -72,6 +73,7 @@ html, body {
   width: 50px;
   display: grid;
   row-gap: 20px;
+  column-gap: 3px;
 }
 
 .coin-img {
@@ -120,8 +122,8 @@ html, body {
 
 .stats2 {
   display: grid;
-  row-gap: 30px;
-  column-gap: 0px;
+  row-gap: 20px;
+  column-gap: 3px;
   height: 80px;
   width: 50px;
 }
@@ -146,4 +148,40 @@ html, body {
   text-align: center;
   font-family: 'Itim', cursive;
   font-size: 20px;
+}
+
+.pick-icon {
+  height: 40px;
+  width: 40px;
+  grid-column-start: 1;
+  grid-column-end: 1;
+}
+
+.pickLvl-display {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 30px;
+  width: 75px;
+  background-color: gold;
+  border: 2px solid brown;
+  text-align: center;
+  font-family: 'Itim', cursive;
+  font-size: 20px;
+}
+
+.death-screen {
+  min-height: 100%;
+  background: black;
+  color: white;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.death-txt {
+  font-size: 100px;
+  font-family: 'Oswald', sans-serif;
 }

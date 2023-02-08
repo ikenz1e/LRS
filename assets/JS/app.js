@@ -1,3 +1,5 @@
+let deathScreen = document.getElementById("death-screen");
+let container = document.getElementById("container");
 let notif_txt = document.getElementById("notification");
 let btn1 = document.getElementById("btn1");
 let btn2 = document.getElementById("btn2");
@@ -10,6 +12,11 @@ const pickaxe_levels = ["wood", "stone", "iron", "gold", "diamond"];
 let pickLvl = 0;
 let pickaxe = pickaxe_levels[pickLvl];
 let multiplier = 1;
+let damage = 0;
+let dmg_text = document.getElementById("dmg-text");
+let cost = 10;
+let cost2 = 100;
+let dmgInc = 25;
 
 function setBtnText(button, text) {
   button.innerText = text;
@@ -80,12 +87,11 @@ function openBuyMenu() {
   setBtnText(btn2, "Sword");
   setBtnText(btn3, "Back");
   btn3.onclick = function() { goShopping() };
-
+  btn2.onclick = function() { upgradeSword() };
   btn1.onclick = function() { upgradePick() };
 }
 
 function upgradePick() {
-  let cost = 10;
   if (money >= cost && pickLvl < 5) {
     money -= cost;
     cost = Math.round(cost*1.5);
@@ -99,6 +105,19 @@ function upgradePick() {
   }
 }
 
+function upgradeSword() {
+  if (money >= cost2) {
+    money -= cost2;
+    money_text.innerHTML = money;
+    cost2 += 2;
+    damage += dmgInc;
+    dmg_text.innerHTML = damage;
+    sendNotification(`increased damage by ${dmgInc}`);
+  }else if(money < cost2) {
+    sendNotification(`not enough, you need ${cost2} coins`);
+  }
+}
+
 function toTown() {
   setBtnText(btn1, "Shopping")
   setBtnText(btn2, "Mining");
@@ -106,8 +125,65 @@ function toTown() {
   btn1.onclick = function() { goShopping() };
   btn2.onclick = function() { goMining() };
   btn3.style.display = "inline";
-  btn3.onclick = function() { setBtnText(btn3, "clicked") };
+  btn3.onclick = function() { loadFightMenu() };
   document.title = "Town"
+}
+
+function loadFightMenu() {
+  setBtnText(btn1, "Rat");
+  setBtnText(btn2, "Bear");
+  setBtnText(btn3, "Dragon");
+  btn1.onclick = function() { fight(100) }
+  btn2.onclick = function() { fight(500) }
+  btn3.onclick = function() { fight(1000) }
+}
+
+function fight(attackDmg) {
+  switch(attackDmg){
+    case 100:
+      if (damage >= attackDmg) {
+        money += 100;
+        money_text.innerHTML = money;
+        sendNotification("you killed the rat and earned 100 coins!");
+        damage -= damage / 2;
+        dmg_text.innerHTML = damage;
+      }else{
+        die();
+      }
+      break;
+    case 500:
+      if (damage >= attackDmg) {
+        money += 250;
+        money_text.innerHTML = money;
+        sendNotification("you killed the bear and earned 250 coins!");
+        damage -= damage / 2;
+        dmg_text.innerHTML = damage;
+      }else{
+        die();
+      }
+      break;
+    case 1000:
+      if (damage >= attackDmg) {
+        money += 500;
+        money_text.innerHTML = money;
+        sendNotification("you killed the dragon and earned 500 coins!");
+        damage -= damage / 2;
+        dmg_text.innerHTML = damage;
+      }else{
+        die();
+      }
+      break;
+    default:
+      break;
+  }
+}
+
+function die() {
+  container.style.display = "none";
+  deathScreen.style.display = "flex";
+  setTimeout(function(){
+    window.location.href = "https://ikenz1e.github.io/LRS/";
+  }, 2500)
 }
 
 function sendNotification(notification) {
@@ -120,4 +196,4 @@ function sendNotification(notification) {
 
 btn1.onclick = function() { goShopping() };
 btn2.onclick = function() { goMining() };
-btn3.onclick = function() { setBtnText(btn3, "clicked") };
+btn3.onclick = function() { loadFightMenu() };

@@ -9,7 +9,10 @@
     <title>Town</title>
   </head>
   <body>
-    <div class="container">
+    <div class="death-screen" id="death-screen">
+      <h1 class="death-txt">YOU DIED</h1>
+    </div>
+    <div class="container" id="container">
       <img class="background img">
       <div class="notifications">
         <p id="notification"></p>
@@ -34,7 +37,11 @@
         <div class="stats2">
           <img src="assets/images/sword.png" class="dmg-icon">
           <div class="dmg-display">
-            <p class="dmg-text">10</p>
+            <p id="dmg-text">0</p>
+          </div>
+          <img src="assets/images/pickaxe.png" class="pick-icon">
+          <div class="pickLvl-display">
+            <p id="pickLvl-txt">1</p>
           </div>
         </div>
       </div>
