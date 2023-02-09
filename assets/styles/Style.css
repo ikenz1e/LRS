@@ -4,11 +4,12 @@
 html, body {
   margin: 0px;
   height: 100%;
+  background: green;
+  overflow: hidden;
 }
 
 .container {
   min-height: 100%;
-  background: green;
 }
 
 .notifications {
@@ -184,4 +185,29 @@ html, body {
 .death-txt {
   font-size: 100px;
   font-family: 'Oswald', sans-serif;
+}
+
+.leaveFightBtn {
+  float: right;
+  height: 75px;
+  width: 155px;
+  background-color: rgba(250, 235, 215, 1);
+  transition: 0.2s;
+  font-size: 27px;
+  font-weight: bold;
+  border: 7px solid grey;
+  border-radius: 5px;
+  font-family: 'Itim', cursive;
+  transform: scale(0.9);
+  display: none;
+}
+.leaveFightBtn:hover {
+  background-color: rgba(250, 235, 215, 0.8);
+  transform: scale(0.8);
+  border: 5px solid orange;
+}
+.leaveFightBtn:active {
+  background-color: rgba(250, 235, 215, 0.7);
+  transform: scale(0.75);
+  border: 3px solid orangered;
 }

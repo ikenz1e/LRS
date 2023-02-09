@@ -17,6 +17,7 @@ let dmg_text = document.getElementById("dmg-text");
 let cost = 10;
 let cost2 = 100;
 let dmgInc = 25;
+let fleeBtn = document.getElementById("fleeBtn");
 
 function setBtnText(button, text) {
   button.innerText = text;
@@ -61,6 +62,7 @@ function goMining(){
   setBtnText(btn2, "Mine");
   btn2.onclick = function() { mine(pickaxe) };
   btn3.style.display = "none";
+  document.body.style.background = "grey";
   document.title = "Mine"
 }
 
@@ -71,6 +73,7 @@ function goShopping() {
   btn3.onclick = function() { toTown() };
   btn2.onclick = function() { sell() };
   btn1.onclick = function() { openBuyMenu() };
+  document.body.style.background = "blue";
   document.title = "Shop"
 }
 
@@ -126,6 +129,7 @@ function toTown() {
   btn2.onclick = function() { goMining() };
   btn3.style.display = "inline";
   btn3.onclick = function() { loadFightMenu() };
+  document.body.style.background = "green";
   document.title = "Town"
 }
 
@@ -136,6 +140,16 @@ function loadFightMenu() {
   btn1.onclick = function() { fight(100) }
   btn2.onclick = function() { fight(500) }
   btn3.onclick = function() { fight(1000) }
+  document.body.style.background = "red";
+  document.title = "dungeon";
+  fleeBtn.style.display = "inline";
+  fleeBtn.onclick = function() { flee() }
+}
+
+function flee() {
+  toTown();
+  fleeBtn.style.display = "none";
+  sendNotification("you fled the fight");
 }
 
 function fight(attackDmg) {
